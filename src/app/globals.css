@@ -1,26 +1,71 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+    --color-primary: #3399ff;
+    --color-secondary: #19d7e6;
+    --color-background: #111318;
+    --color-foreground: #f8f9fd;
+    --color-premium: #f5c542;
+    --color-card: #020817;
+    --glow-primary: 210 100% 60%;
+    --gradient-start: 210 100% 60%;
+    --gradient-end: 195 80% 50%;
+    --card: 222.2 84% 4.9%;
+    --border: 217.2 32.6% 17.5%;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@layer utilities {
+    .gradient-text {
+        background: linear-gradient(135deg, var(--color-primary), #19b3e6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .glass-card {
+        background: hsl(var(--card) / 0.4);
+        backdrop-filter: blur(40px);
+        border: 1px solid hsl(var(--border) / 0.3);
+    }
+
+    .glow-effect {
+        box-shadow: 0 0 20px hsl(var(--glow-primary) / 0.3),
+            0 0 40px hsl(var(--glow-primary) / 0.2),
+            0 0 60px hsl(var(--glow-primary) / 0.1);
+    }
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+    :root {
+        --background: var(--color-background);
+        --foreground: var(--color-foreground);
+    }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+label {
+    color: var(--foreground);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+input,
+select {
+    background: hsl(var(--card) / 0.6);
+    border: 1px solid hsl(var(--border) / 0.5);
+    color: var(--foreground);
+    border-radius: 12px;
+    height: 48px;
+    padding: 0 16px;
+    width: 100%;
+}
+
+svg {
+    position: relative;
+    bottom: 1px;
 }
